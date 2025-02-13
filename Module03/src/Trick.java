@@ -1,12 +1,23 @@
 public class Trick {
+    private String name;
+    private String description;
 
-    private String trickName;
-
-    public Trick(String trickName) {
-        this.trickName = trickName;
+    public Trick(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public String getName() {
-        return trickName;
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    // Override toString() to provide meaningful output
+    @Override
+    public String toString() {
+        return "Trick{" + name + "}";
     }
 }

@@ -2,45 +2,27 @@ import java.util.List;
 import java.util.ArrayList;
 
 public abstract class Animal {
-    private static final String BIO_NAME = "Animalia"; // since this doesn't change
+    private static final String BIO_NAME = "Animalia"; // Kingdom is constant
+    protected String name;  //  Add name field for better identification
+    protected Taxonomy taxonomy;  // Use a Taxonomy class instead of multiple abstract methods
 
-    private List<Trick> tricks = new ArrayList<>();
-
-
-    public abstract String getPhylum();
-
-    public abstract String getAnimalClass();
-
-    public abstract String getOrder();
-
-    public abstract String getFamily();
-
-    public abstract String getGenus();
-
-    public abstract String getSpecies();
-
-    public abstract String getSound();
-
-    public abstract int getMaxTricks();
-
+    public Animal(String name, Taxonomy taxonomy) {
+        this.name = name;
+        this.taxonomy = taxonomy;
+    }
 
     public String getKingdom() {
         return BIO_NAME;
     }
 
-    public int trickCount() {
-        return tricks.size();
-
+    public String getName() {
+        return name;
     }
 
-    public boolean addTrick(Trick trick) {
-        if (getMaxTricks() - 1 > tricks.size()) {
-            tricks.add(trick);
-            return true; // able to add a trick
-        }
-        return false; // not able to add a trick
+    public Taxonomy getTaxonomy() {
+        return taxonomy;
     }
 
-
-
+    //  Keep `getSound()` as an abstract method (since different animals have different sounds)
+    public abstract String getSound();
 }

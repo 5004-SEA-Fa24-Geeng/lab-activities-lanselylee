@@ -1,51 +1,47 @@
 import java.util.List;
 import java.util.ArrayList;
 
-/**
- * Driver program for the menagerie example.
- */
 public class Menagerie {
+    private List<Animal> animals;  // Encapsulated list of animals
 
-    List<Animal> animals = new ArrayList<>(); // this is similar to a python list - will cover more
-                                              // in module 04
+    public Menagerie() {
+        this.animals = new ArrayList<>();
+    }
 
     public void addAnimal(Animal animal) {
         animals.add(animal);
     }
 
     public List<Animal> getAnimals() {
-        return animals;
+        return new ArrayList<>(animals);  // Return a copy for safety
     }
 
     public int getCount() {
-        return animals.size(); // returns the total animals in the list
+        return animals.size();
     }
 
-    // adds some initial animals to the menagerie
+    // Adds test animals to the menagerie
     private static void addTestSet(Menagerie menagerie) {
-        menagerie.addAnimal(new Dog("Fido"));
-        menagerie.addAnimal(new Dog("Roy", 23));
-        menagerie.addAnimal(new Cat("Cattivo", 5));
-        menagerie.addAnimal(new Fox("Robin"));
-        menagerie.addAnimal(new Cat("Gus"));
+        Taxonomy dogTaxonomy = new Taxonomy("Canis lupus", "Chordata", "Mammalia", "Carnivora", "Canidae", "Canis", "Canis lupus", "Animalia");
+        Taxonomy catTaxonomy = new Taxonomy("Felis catus", "Chordata", "Mammalia", "Carnivora", "Felidae", "Felis", "Felis catus", "Animalia");
+        Taxonomy foxTaxonomy = new Taxonomy("Vulpes vulpes", "Chordata", "Mammalia", "Carnivora", "Canidae", "Vulpes", "Vulpes vulpes", "Animalia");
 
+        menagerie.addAnimal(new Dog("Fido", dogTaxonomy));
+        menagerie.addAnimal(new Dog("Roy", dogTaxonomy));
+        menagerie.addAnimal(new Cat("Cattivo", catTaxonomy));
+        menagerie.addAnimal(new Fox("Robin", foxTaxonomy));
+        menagerie.addAnimal(new Cat("Gus", catTaxonomy));
     }
-
 
     public static void main(String[] args) {
-        Menagerie fun_times = new Menagerie();
-        addTestSet(fun_times); // static add of some test elements
+        Menagerie menagerie = new Menagerie();
+        addTestSet(menagerie);
 
-        for (Animal animal : fun_times.getAnimals()) {
+        System.out.println("Animals in the Menagerie:");
+        for (Animal animal : menagerie.getAnimals()) {
             System.out.println(animal);
         }
 
-
-        System.out.printf("Total in the menagerie: %d\n", fun_times.getCount()); // btw printf is
-                                                                                 // the same as in
-                                                                                 // C, it allows the
-                                                                                 // C standard
-                                                                                 // formatting.
+        System.out.printf("Total animals in the menagerie: %d\n", menagerie.getCount());
     }
-
 }

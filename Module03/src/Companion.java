@@ -1,16 +1,8 @@
-public abstract class Companion extends Animal {
-    private String friendlyName;
+import java.util.List;
+import java.util.ArrayList;
 
-    public Companion(String name) {
-        setFriendlyName(name);
-
-    }
-
-    public void setFriendlyName(String name) {
-        this.friendlyName = name;
-    }
-
-    public String getFriendlyName() {
-        return friendlyName;
-    }
+public interface Companion {
+    void train(Trick trick);
+    List<Trick> getTricks();
+    String getName();
 }

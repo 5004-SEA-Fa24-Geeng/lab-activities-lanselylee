@@ -20,6 +20,11 @@ public class Taxonomy {
         this.kingdom = kingdom;
     }
 
+    public Taxonomy(String genus, String species) {
+        this.genus = genus;
+        this.species = species;
+    }
+
     public String getCommonName() {
         return commonName;
     }
